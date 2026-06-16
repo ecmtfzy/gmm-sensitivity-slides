@@ -62,6 +62,10 @@ format:
           .reveal #refs .csl-entry { margin-bottom: 0.40em; }
           /* Hide the counter on uncounted (back-matter) slides */
           .reveal:has(section.present[data-visibility="uncounted"]) .slide-number { display: none; }
+          /* Page 13 (Three applications): wider gaps between table columns */
+          .reveal #three-apps table th, .reveal #three-apps table td {
+            padding-left: 1.5em; padding-right: 1.5em;
+          }
           /* Vertically center the slide body while keeping the title pinned at
              the top-left. The section is a centered flex column; the title is
              lifted out of the flow (absolute) so only the body is centered.
@@ -113,7 +117,9 @@ embed-resources: true
 
 - A [local]{.alert} deviation of the moments, evaluated at [correct specification]{.alert}.
 
-- But the $J$-test rejects strongly: the moments are [globally (fixed) misspecified]{.alert}.
+- But in their analysis of @berry1995automobile (BLP):
+    - the $J$-test rejects strongly
+    - the moments are [globally (fixed) misspecified]{.alert}.
 
 
 ## Sensitivity diagnostics meet misspecification
@@ -124,9 +130,9 @@ embed-resources: true
 
 - Misspecification $\Rightarrow \widehat\theta$ converges to the [pseudo-true value]{.purple} $\class{purple}{\theta_0}$, the unique minimizer of the GMM criterion, with
 
-$$\class{alert}{g} = \mathbb{E}[g(X_i,\theta_0)] \neq 0.$$
+$$g = \mathbb{E}[g(X_i,\theta_0)] \neq 0.$$
 
-- [Extend AGS: sensitivity as a local deviation around the fixed-misspecified $\theta_0$.]{.alert}
+- **Extend AGS**: sensitivity as a [local]{.alert} deviation around the [fixed misspecified]{.purple} $\class{purple}{\theta_0}$
 
 
 ## Setup
@@ -145,12 +151,12 @@ $$\sqrt{n}\begin{pmatrix} \widehat\theta - \theta_0 \\ \widehat g(\theta_0) - g 
 ::: {.theorem-title}
 Definition 1 *(misspecification-robust sensitivity, MRS)*
 :::
-$$\class{teal}{\Lambda} = \sigma_{\theta g}\,\sigma_{gg}^{-1} \qquad (p \times q).$$
+$$\Lambda = \sigma_{\theta g}\,\sigma_{gg}^{-1} \qquad (p \times q).$$
 :::
 
-In the limit, $\mathbb{E}[\widetilde\theta \mid \widetilde g] = \Lambda\,\widetilde g$: the regression coefficient of the estimator on the moments.
+In the limit, $\mathbb{E}[\widetilde\theta \mid \widetilde g] = \Lambda\,\widetilde g \ $: the regression coefficient of the estimator on the moments.
 
-Correct specification: $\quad \class{teal}{\Lambda} = -(G'WG)^{-1}G'W$ (AGS).
+Correct specification: $\quad \Lambda_{AGS} = -(G'WG)^{-1}G'W$ .
 
 
 ## Sensitivity requires the influence function
@@ -158,16 +164,16 @@ Correct specification: $\quad \class{teal}{\Lambda} = -(G'WG)^{-1}G'W$ (AGS).
 - Asymptotically linear representation:
 
 $$\sqrt{n}(\widehat\theta - \theta_0) = \frac{1}{\sqrt{n}}\sum_{i=1}^n \psi(X_i) + o_p(1),
-\qquad \class{teal}{\nu_i} = g(X_i,\theta_0) - g.$$
+\qquad \nu_i = g(X_i,\theta_0) - g.$$
 
-- Then $\class{teal}{\Lambda} = \mathbb{E}[\psi\nu']\,\mathbb{E}[\nu\nu']^{-1}$: we need $\psi(X_i)$ [at the pseudo-true value]{.purple}.
+- Then $\Lambda = \mathbb{E}[\psi\nu']\,\mathbb{E}[\nu\nu']^{-1}$: we need $\psi(X_i)$ [at the pseudo-true value]{.purple}.
 
 - Correct specification: $\psi_i = \Lambda_{AGS}\,\nu_i$.
 
-- Misspecification ($\class{alert}{g} \neq 0$): sampling variation in the Jacobian $\widehat G$ and the estimated weight $\widehat W(\widehat\phi)$, with $\widehat\phi$ a first-step estimator, enters $\psi$ at first order, through influence functions $\class{alert}{\gamma_i}$, $\class{alert}{\omega_i}$, $\class{alert}{\psi^\phi}$.
+- Misspecification ($g \neq 0$): sampling variation in the Jacobian $\widehat G$ and the estimated weight $\widehat W(\widehat\phi)$, with $\widehat\phi$ a first-step estimator, enters $\psi$ at first order, through influence functions $\class{alert}{\gamma_i}$, $\class{alert}{\omega_i}$, $\class{alert}{\psi^\phi}$.
 
 ::: {style="text-align: center;"}
-[Proposition 1 derives $\psi$ and these channels.]{.alert}
+[Proposition 1 derives $\psi$ and these channels.]{.teal}
 :::
 
 
@@ -184,14 +190,14 @@ $$\psi^{1s,W}(X_i) = -A^{-1}\Big[\,
 + \underbracket[1pt]{\class{alert}{(g' \otimes G')\,\omega_i}}_{\class{alert}{\text{weight matrix}}}
 \,\Big].$$
 
-Two-step adds $B\psi^\phi(X_i)$ *inside the bracket*; iterated replaces $A^{-1}$ by $(A+B)^{-1}$.
+Two-step adds $\class{alert}{B\psi^\phi(X_i)}$ inside the bracket; iterated replaces $A^{-1}$ by $(A+B)^{-1}$.
 :::
 
 ::: {.definition}
 ::: {.theorem-title}
 Definition 2 *(informativeness)*
 :::
-$$\class{teal}{\Delta_k} = \frac{\sigma_{\theta_k g}\,\sigma_{gg}^{-1}\,\sigma_{g\theta_k}}{\sigma_{\theta_k\theta_k}}
+$$\Delta_k = \frac{\sigma_{\theta_k g}\,\sigma_{gg}^{-1}\,\sigma_{g\theta_k}}{\sigma_{\theta_k\theta_k}}
 \;=\; R^2 \text{ of } \widehat\theta_k \text{ on the moments} \;\in [0,1].$$
 :::
 
@@ -200,11 +206,13 @@ $$\class{teal}{\Delta_k} = \frac{\sigma_{\theta_k g}\,\sigma_{gg}^{-1}\,\sigma_{
 
 - We interpret informativeness as **structural efficiency**: the proportion of the asymptotic variance explained by the moments.
 
-- Extends @andrews2020informativeness; they derive $\class{teal}{\Delta_k} = 1$ under correct specification.
+- Extends @andrews2020informativeness
+    - they derive the informativeness of [descriptive statistics]{.alert} for correctly specified GMM estimator 
+    - replacing [descriptive statistics]{.alert} by $g$, $\Delta = 1$ under correct specification
 
-- $\class{teal}{\Delta_k} < 1$ when the Jacobian channel, the weight-matrix channel, or the preliminary-estimator channel matter.
+- $\Delta_k < 1$ when the Jacobian channel, the weight-matrix channel, or the preliminary-estimator channel matter.
 
-- $\class{teal}{\Delta_k}$ vs. the $J$-test.
+- $\Delta_k$ vs. the $J$-test.
 
 
 ## Optimal minimum distance {#omd}
@@ -217,24 +225,25 @@ $$\class{teal}{\Delta_k} = \frac{\sigma_{\theta_k g}\,\sigma_{gg}^{-1}\,\sigma_{
 
 - Only the [weight-matrix channel]{.alert} survives: we show
 
-$$\psi_i = M_\nu\nu_i\,(1 - \nu_i'W\class{alert}{g}).$$
+$$\psi_i = M_\nu\nu_i\,(1 - \nu_i'Wg).$$
 
 - Under Gaussian moments, we show:
 
-$$\class{teal}{\Delta_k} = \frac{1}{1 + g'Wg}.$$
+$$\Delta_k = \frac{1}{1 + g'Wg}.$$
 
 - [The optimal weight buys efficiency at the price of informativeness.]{.alert}
 
 
 ## The weighting ladder
 
-$V = I_q$, Gaussian, common misspecification $g_k = \delta$. Same population weight; differ in how much is [estimated]{.alert}:
+$V = I_q$, Gaussian, common misspecification $g_k = \delta$. Same population weight; differ in how much is estimated:
 
-$$\underbracket{\class{teal}{\Delta_k^{OMD}} = \frac{1}{1 + q\delta^2}}_{\text{optimal weight}}
+$$
+\underbracket{\Delta_k^{OMD} = \frac{1}{1 + q\delta^2}}_{\class{purple}{\text{optimal weight}}}
 \qquad
-\underbracket{\class{teal}{\Delta_k^{DWMD}} = \frac{1}{1 + 2\delta^2}}_{\text{diagonal}}
+\underbracket{\Delta_k^{DWMD} = \frac{1}{1 + 2\delta^2}}_{\class{purple}{\text{diagonal}}}
 \qquad
-\underbracket{\class{teal}{\Delta_k^{EWMD}} = 1}_{\text{identity}}.$$
+\underbracket{\Delta_k^{EWMD} = 1}_{\class{purple}{\text{identity}}}.$$
 
 <br>
 
@@ -249,7 +258,7 @@ $$\underbracket{\class{teal}{\Delta_k^{OMD}} = \frac{1}{1 + q\delta^2}}_{\text{o
 ::: {.theorem-title}
 Proposition 3 *(sensitivity to the first-step estimator)*
 :::
-$$\Lambda_\phi = \operatorname*{plim}\, \frac{\partial\,\widehat\theta(\widehat\phi)}{\partial\widehat\phi'} = -A^{-1}\class{purple}{B}.$$
+$$\Lambda_\phi = \operatorname*{plim}\, \frac{\partial\,\widehat\theta(\widehat\phi)}{\partial\widehat\phi'} = -A^{-1}B.$$
 :::
 
 
@@ -261,7 +270,7 @@ Proposition 4 *(geometric convergence of iterated GMM)*
 :::
 For every $\tilde\rho \in (\rho(-A^{-1}B), 1)$, there is $C_{\tilde\rho}$ with
 $$\big\|\psi^{ss}(X_i) - \psi^{it}(X_i)\big\|_{L^2(P)} \le C_{\tilde\rho}\,\tilde\rho^{\,s-1}.$$
-Hence $\operatorname{Var}(\psi^{ss}) \to \operatorname{Var}(\psi^{it})$ and $\class{teal}{\Delta_k^{ss}} \to \class{teal}{\Delta_k^{it}}$ at the same rate.
+Hence $\operatorname{Var}(\psi^{ss}) \to \operatorname{Var}(\psi^{it})$ and $\Delta_k^{ss} \to \Delta_k^{it}$ at the same rate.
 :::
 
 - @hansen2021inference show convergence of the iterated estimand/estimator.
@@ -269,7 +278,7 @@ Hence $\operatorname{Var}(\psi^{ss}) \to \operatorname{Var}(\psi^{it})$ and $\cl
 - This proposition shows the convergence holds for the influence function and the variance as well.
 
 
-## Three applications
+## Three applications {#three-apps}
 
 | | Jacobian $\class{alert}{\gamma_i}$ | weight channel | iteration |
 |:--|:-:|:-:|:-:|
@@ -283,7 +292,7 @@ Hence $\operatorname{Var}(\psi^{ss}) \to \operatorname{Var}(\psi^{it})$ and $\cl
 
 - BPP: the *choice of weight* as an efficiency--informativeness trade.
 
-- AJRY: $J$ and $\class{teal}{\Delta}$ *disagree*.
+- AJRY: $J$ and $\Delta$ *disagree*.
 
 
 ## BLP: sensitivity reorders
@@ -292,7 +301,7 @@ Hence $\operatorname{Var}(\psi^{ss}) \to \operatorname{Var}(\psi^{it})$ and $\cl
 
 - AGS (hollow) vs. MRS (filled) for the average markup.
 
-- $\class{teal}{\widehat\Delta_{markup}} = 0.56$, $\;J = 345$ ($p$-value $< 0.001$).
+- $\widehat\Delta_{markup} = 0.56$, $\;J = 345$ ($p$-value $< 0.001$).
 
 
 ## BPP: three weights, same moments
@@ -313,7 +322,7 @@ $35$ parameters, $q = 325$, $n = 1{,}765$, $J = 538.7$ (df $290$).
 ![](figs/BPP_delta_weights.svg){width="56%" fig-align="center"}
 
 ::: {style="text-align: center;"}
-OMD $\class{teal}{0.70}$--$\class{teal}{0.87}$; $\;$ DWMD $\class{teal}{\approx 0.99}$; $\;$ EWMD $\class{teal}{= 1}$. $\quad$ SE($\phi$): $0.043 \to \class{alert}{0.113}$.
+OMD $\class{teal}{0.70}$--$\class{teal}{0.87}$; $\;$ DWMD $\class{teal}{\approx 0.99}$; $\;$ EWMD $\class{teal}{= 1}$. $\quad$ SE($\phi$): $0.043 \to 0.113$.
 :::
 
 
@@ -335,7 +344,7 @@ Difference GMM, $n = 127$ countries, df $44$; coefficient $\gamma$.
 
 - Sensitive to the choice of uncentered/centered efficient weight:
 
-$$J = 45.3\,(p{=}0.42) \;\text{ vs. }\; J_c = \class{alert}{70.4}\,(p{=}\class{alert}{0.007}), \qquad J = J_c/(1 + J_c/n).$$
+$$J = 45.3\,(p{=}0.42) \;\text{ vs. }\; J_c = 70.4\,(p{=}0.007), \qquad J = J_c/(1 + J_c/n).$$
 
 
 ## AJRY: $J$ turns on a centering convention; $\Delta$ does not
@@ -343,13 +352,13 @@ $$J = 45.3\,(p{=}0.42) \;\text{ vs. }\; J_c = \class{alert}{70.4}\,(p{=}\class{a
 ![](figs/AJRY_J_vs_Delta.svg){width="60%" fig-align="center"}
 
 ::: {style="text-align: center;"}
-$\class{teal}{\widehat\Delta_\gamma} = 0.77$, $\;J = 45.3$, $\;J_c = 70.4$.
+$\widehat\Delta_\gamma = 0.77$, $\;J = 45.3$, $\;J_c = 70.4$.
 :::
 
 
 ## $J$ and $\Delta$ are complements
 
-| | $J$ under iteration | $\class{teal}{\widehat\Delta}$ under iteration | |
+| | $J$ under iteration | $\widehat\Delta$ under iteration | |
 |:--|:-:|:-:|:--|
 | BLP | flat at $345$ | $0.56 \to 0.24$ | $J$ silent, $\Delta$ falls |
 | BPP | no iteration | $0.79\,/\,0.99\,/\,1$ | how to weight matters |
@@ -359,7 +368,7 @@ $\class{teal}{\widehat\Delta_\gamma} = 0.77$, $\;J = 45.3$, $\;J_c = 70.4$.
 
 - $J$: how far are the moments from zero?
 
-- $\class{teal}{\Delta}$: how much of the variance do the moments explain?
+- $\Delta$: how much of the variance do the moments explain?
 
 
 ## Takeaways
