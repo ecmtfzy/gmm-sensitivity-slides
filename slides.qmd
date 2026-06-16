@@ -373,13 +373,13 @@ $\widehat\Delta_\gamma = 0.77$, $\;J = 45.3$, $\;J_c = 70.4$.
 
 ## Takeaways
 
-1. Robust to misspecification: evaluate sensitivity and informativeness [at the pseudo-true value]{.purple}.
+1. Robust to misspecification: evaluate sensitivity and informativeness at the pseudo-true value.
 
 2. Sensitivity rankings can reorder (BLP).
 
 3. Weight choice in MD estimation is an efficiency--informativeness trade (BPP).
 
-4. Reporting $\class{teal}{\widehat\Delta_k}$ is straightforward if you calculate misspecification-robust standard errors: it is free and answers what the $J$-test cannot (AJRY).
+4. Reporting $\widehat\Delta_k$ is straightforward if you calculate misspecification-robust standard errors: it is free and answers what the $J$-test cannot (AJRY).
 
 
 ## Appendix: Assumption 1 (regularity) {#app-assumption data-visibility="uncounted" .smaller}
@@ -389,9 +389,9 @@ $\widehat\Delta_\gamma = 0.77$, $\;J = 45.3$, $\;J_c = 70.4$.
 Assumption 1 *(regularity)*
 :::
 (i) $\{X_i\}_{i=1}^n$ i.i.d.
-(ii) $\Theta \subset \mathbb{R}^p$ compact; unique interior minimizer $\class{purple}{\theta_0}$ of the population objective.
+(ii) $\Theta \subset \mathbb{R}^p$ compact; unique interior minimizer $\theta_0$ of the population objective.
 (iii) $g(X,\cdot)$ thrice continuously differentiable; $\mathbb{E}\sup_\theta\|g\|^2,\, \mathbb{E}\sup_\theta\|G\|^2 < \infty$, and uniform $L^2$ ($L^1$) bounds on second (third) derivatives.
-(iv) curvature matrices $\class{purple}{A}$ and $\class{purple}{A + B}$ nonsingular.
+(iv) curvature matrices $A$ and $A + B$ nonsingular.
 (v) (iterated GMM) the population updating map is a contraction at $\theta_0$ ($\rho(-A^{-1}B) < 1$).
 (vi) weight conditions: (a) one-step, $\widehat W \xrightarrow{p} W \succ 0$, $\sqrt{n}\,\operatorname{vec}(\widehat W - W) = n^{-1/2}\sum_i \omega_i + o_p(1)$; (b) parameter-dependent, $\widehat\phi \xrightarrow{p} \phi_0$ asymptotically linear, $W(\phi)$ smooth with uniform convergence of $\widehat W(\phi)$ and its derivative.
 :::
@@ -412,9 +412,9 @@ Return to:
 
 - Channels: $\;\class{teal}{\nu_i} = g(X_i,\theta_0) - g$, $\quad \class{alert}{\gamma_i} = \operatorname{vec}\big(G(X_i,\theta_0)' - G'\big)$, $\quad \class{alert}{\omega_i} =$ influence function of $\widehat W$, $\quad \class{alert}{\psi^\phi} =$ influence function of the first-step $\widehat\phi$.
 
-- Curvature: $\;R = \mathbb{E}\big[\partial_{\theta'}\operatorname{vec}(G(X_i,\theta_0)')\big]$, $\quad H = (g'W \otimes I_p)R$, $\quad \class{purple}{A} = G'WG + H$.
+- Curvature: $\;R = \mathbb{E}\big[\partial_{\theta'}\operatorname{vec}(G(X_i,\theta_0)')\big]$, $\quad H = (g'W \otimes I_p)R$, $\quad A = G'WG + H$.
 
-- Iteration: $\;S = \partial_{\phi'}\operatorname{vec} W(\phi_0)$ (two-step) or $\partial_{\theta'}\operatorname{vec} W(\theta_0)$ (iterated), $\quad \class{purple}{B} = (g' \otimes G')S$.
+- Iteration: $\;S = \partial_{\phi'}\operatorname{vec} W(\phi_0)$ (two-step) or $\partial_{\theta'}\operatorname{vec} W(\theta_0)$ (iterated), $\quad B = (g' \otimes G')S$.
 
 - Coefficient maps: $\;M_\nu = -A^{-1}G'W$, $\quad M_\gamma = -A^{-1}(g'W \otimes I_p)$, $\quad M_\omega = -A^{-1}(g' \otimes G')$.
 
@@ -431,7 +431,7 @@ Return to:
 ![](figs/AJRY_multistart.svg){width="80%" fig-align="center"}
 
 ::: {style="text-align: center; font-size: 0.85em;"}
-$\widehat\gamma_s$ and $\class{teal}{\widehat\Delta_{\gamma,s}}$ reach the common fixed point from every start; the approach of $\Delta$ is non-monotone.
+$\widehat\gamma_s$ and $\widehat\Delta_{\gamma,s}$ reach the common fixed point from every start; the approach of $\Delta$ is non-monotone.
 :::
 
 
@@ -440,7 +440,7 @@ $\widehat\gamma_s$ and $\class{teal}{\widehat\Delta_{\gamma,s}}$ reach the commo
 ![](figs/schennach_panel.svg){width="56%" fig-align="center"}
 
 ::: {style="text-align: center; font-size: 0.85em;"}
-@schennach2007point: normal mean with misspecified variance restriction; closed-form $\class{teal}{\Delta}$ for one-step, two-step, iterated, CUE.
+@schennach2007point: normal mean with misspecified variance restriction; closed-form $\Delta$ for one-step, two-step, iterated, CUE.
 :::
 
 
