@@ -132,7 +132,7 @@ embed-resources: true
 
 $$g = \mathbb{E}[g(X_i,\theta_0)] \neq 0.$$
 
-- **Extend AGS**: sensitivity as a [local]{.alert} deviation around the [fixed misspecified]{.purple} $\class{purple}{\theta_0}$
+- **Extend AGS**: sensitivity as a [local]{.alert} deviation around the [globally misspecified]{.purple} $\class{purple}{\theta_0}$
 
 
 ## Setup
@@ -200,6 +200,23 @@ Definition 2 *(informativeness)*
 $$\Delta_k = \frac{\sigma_{\theta_k g}\,\sigma_{gg}^{-1}\,\sigma_{g\theta_k}}{\sigma_{\theta_k\theta_k}}
 \;=\; R^2 \text{ of } \widehat\theta_k \text{ on the moments} \;\in [0,1].$$
 :::
+
+
+## Curvature $A$ and weight-Jacobian $B$ {#curvature}
+
+The bracket in Proposition 1 is scaled by the curvature $\class{purple}{A}$; the first step and iteration enter through $\class{purple}{B}$.
+
+$$\class{purple}{A} = \underbracket[1pt]{G'WG}_{\text{standard curvature}}
++ \underbracket[1pt]{\class{alert}{H}}_{\class{alert}{\text{misspecification}}},
+\qquad H = (g'W \otimes I_p)\,R, \quad R = \mathbb{E}\big[\partial_{\theta'}\operatorname{vec}(G(X_i,\theta_0)')\big].$$
+
+$$\class{purple}{B} = (g' \otimes G')\,S,
+\qquad S = \begin{cases}
+\partial_{\phi'}\operatorname{vec} W(\phi_0) & \text{(two-step)}\\
+\partial_{\theta'}\operatorname{vec} W(\theta_0) & \text{(iterated)}.
+\end{cases}$$
+
+- Under [correct specification]{.alert} ($g = 0$): $\class{alert}{H} = 0$ and $\class{purple}{B} = 0$, so $\class{purple}{A} = G'WG$ — the standard GMM curvature, and the first-step/iteration channel vanishes.
 
 
 ## Informativeness, and when $\Delta_k < 1$

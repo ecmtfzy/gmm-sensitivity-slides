@@ -177,6 +177,31 @@
 %    \notebtn\assumbtn
 \end{frame}
 
+% ===================================== Curvature A and weight-Jacobian B
+\begin{frame}{Curvature $A$ and weight-Jacobian $B$}
+    The bracket in Proposition~1 is scaled by the curvature $A$; the first step
+    and iteration enter through $B$.
+    \[
+        A=\underbrace{G'WG}_{\text{standard curvature}}
+         +\underbrace{H}_{\text{misspecification}},
+        \qquad H=(g'W\otimes I_p)R,\quad
+        R=\E\!\big[\partial_{\theta'}\vect(G(X_i,\theta_0)')\big].
+    \]
+    \[
+        B=(g'\otimes G')S,
+        \qquad
+        S=\begin{cases}
+            \partial_{\phi'}\vect W(\phi_0) & \text{(two-step)}\\
+            \partial_{\theta'}\vect W(\theta_0) & \text{(iterated)}.
+        \end{cases}
+    \]
+    \begin{itemize}
+        \item Under \alert{correct specification} ($g=0$): $H=0$ and $B=0$, so
+        $A=G'WG$ --- the standard GMM curvature, and the first-step/iteration
+        channel vanishes.
+    \end{itemize}
+\end{frame}
+
 % ============================================ Definition 2 + Corollary 1
 \begin{frame}{Informativeness, and when $\Delta_k<1$}
     \begin{itemize}
