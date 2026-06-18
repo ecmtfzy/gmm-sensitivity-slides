@@ -193,14 +193,6 @@ $$\psi^{1s,W}(X_i) = -A^{-1}\Big[\,
 Two-step adds $\class{alert}{B\psi^\phi(X_i)}$ inside the bracket; iterated replaces $A^{-1}$ by $(A+B)^{-1}$.
 :::
 
-::: {.definition}
-::: {.theorem-title}
-Definition 2 *(informativeness)*
-:::
-$$\Delta_k = \frac{\sigma_{\theta_k g}\,\sigma_{gg}^{-1}\,\sigma_{g\theta_k}}{\sigma_{\theta_k\theta_k}}
-\;=\; R^2 \text{ of } \widehat\theta_k \text{ on the moments} \;\in [0,1].$$
-:::
-
 
 ## Curvature $A$ and weight-Jacobian $B$ {#curvature}
 
@@ -221,7 +213,18 @@ $$\class{purple}{B} = (g' \otimes G')\,S,
 
 ## Informativeness, and when $\Delta_k < 1$
 
+::: {.definition}
+::: {.theorem-title}
+Definition 2 *(informativeness)*
+:::
+$$\Delta_k = \frac{\sigma_{\theta_k g}\,\sigma_{gg}^{-1}\,\sigma_{g\theta_k}}{\sigma_{\theta_k\theta_k}}
+\;=\; R^2 \text{ of } \widehat\theta_k \text{ on the moments} \;\in [0,1].$$
+:::
+
 - We interpret informativeness as **structural efficiency**: the proportion of the asymptotic variance explained by the moments.
+
+
+## Informativeness, and when $\Delta_k < 1$
 
 - Extends @andrews2020informativeness
     - they derive the informativeness of [descriptive statistics]{.alert} for correctly specified GMM estimator 
